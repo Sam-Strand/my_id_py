@@ -12,17 +12,17 @@ Python библиотека для работы с уникальными иде
 ## Установка
 ### Способ 1: Установка из репозитория (требуется Git)
 ```bash
-pip install git+https://github.com/Sam-Strand/my_id.git
+pip install git+https://github.com/Sam-Strand/my_id_py.git
 ```
 
 ### Способ 2: Установка готового пакета (без Git)
 ```bash
-pip install https://github.com/Sam-Strand/my_id/releases/download/v1.0.1/my_id-1.0.1-py3-none-any.whl
+pip install https://github.com/Sam-Strand/my_id_py/releases/download/v1.0.1/my_id_py-1.0.1-py3-none-any.whl
 ```
 
 ## Быстрый старт
 ```python
-from my_id import MyID
+from my_id_py import MyID
 
 # Создание случайного ID
 uid = MyID()
