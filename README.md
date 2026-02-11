@@ -22,7 +22,7 @@ pip install https://github.com/Sam-Strand/my_id_py/releases/download/v1.0.2/my_i
 
 ## Быстрый старт
 ```python
-from my_id_py import MyID
+from my_id import MyID
 
 # Создание случайного ID
 uid = MyID()
