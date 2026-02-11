@@ -139,38 +139,3 @@ class MyIDTuple(tuple):
                 lambda v: ','.join(str(x) for x in v)
             )
         )
-
-
-if __name__ == '__main__':
-    print(MyID.derive("hello world"))
-    # Примеры использования
-    print('Случайные uid:')
-    for _ in range(10):
-        print(MyID())  # новые случайные uid
-
-    print('\nДетерминированные uid (из строки "hello"):')
-    for _ in range(3):
-        print(MyID.derive('hello'))  # всегда один и тот же uid для "hello"
-
-    print('\nВалидация:')
-    for value in [
-        None, # Не валидно → ValueError
-        MyID(),  # уже MyID → возвращается сам объект
-        str(MyID()),  # валидная строка → создаётся новый MyID с той же строкой
-        'A123456789012345678901',  # валидно → создаётся MyID
-        '1234567890123456789012',  # невалидно (начинается с цифры) → ValueError
-    ]:
-        try:
-            print(f"{value!r} -> {MyID(value)}")
-        except ValueError as e:
-            print(f"{value!r} -> Error: {e}")
-
-    # Пример использования MyIDTuple
-    t = MyIDTuple('xqqumRbXZ1KdIXDOBLcFTE,xELq0jsA9rgDlTkYXJXz6S,YXtOWu9Uv06iLOItdhPSWl')
-
-    print(t)  # -> ('xqqumRbXZ1KdIXDOBLcFTE', 'xELq0jsA9rgDlTkYXJXz6S', 'YXtOWu9Uv06iLOItdhPSWl')    
-
-    try:
-        MyIDTuple('невалидныйID, xELq0jsA9rgDlTkYXJXz6S')
-    except ValueError as e:
-        print('Ошибка:', e)
