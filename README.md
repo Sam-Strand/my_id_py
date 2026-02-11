@@ -17,7 +17,7 @@ pip install git+https://github.com/Sam-Strand/my_id_py.git
 
 ### Способ 2: Установка готового пакета (без Git)
 ```bash
-pip install https://github.com/Sam-Strand/my_id_py/releases/download/v1.0.1/my_id-1.0.1-py3-none-any.whl
+pip install https://github.com/Sam-Strand/my_id_py/releases/download/v1.0.2/my_id-1.0.2-py3-none-any.whl
 ```
 
 ## Быстрый старт
