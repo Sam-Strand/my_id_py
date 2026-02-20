@@ -99,8 +99,6 @@ class MyIDTuple(tuple):
     def __new__(cls, value):
         def flatten(v):
             if isinstance(v, str):
-                if ',' not in v:
-                    return [MyID(v)]
                 parts = [x.strip() for x in v.split(',') if x.strip()]
                 result = []
                 for p in parts:
