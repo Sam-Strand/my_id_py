@@ -99,20 +99,21 @@ class MyIDTuple(tuple):
     def __new__(cls, value):
         def flatten(v):
             if isinstance(v, str):
-                parts = [x.strip() for x in v.split(',') if x.strip()]
-                result = []
-                for p in parts:
-                    result.extend(flatten(p))
-                return result
-            if isinstance(v, (list, tuple)):
-                result = []
+                v = v.strip()
+                if not v:
+                    return
+                if ',' in v:
+                    for part in v.split(','):
+                        yield from flatten(part)
+                else:
+                    yield MyID(v)
+            elif isinstance(v, (list, tuple)):
                 for item in v:
-                    result.extend(flatten(item))
-                return result
-            if isinstance(v, MyID):
-                return [v]
-
-            raise ValueError(f'Невалидный элемент: {v!r}')
+                    yield from flatten(item)
+            elif isinstance(v, MyID):
+                yield v
+            else:
+                raise ValueError(f'Невалидный элемент: {v!r}')
 
         if isinstance(value, cls):
             return value

@@ -318,6 +318,31 @@ class TestMyIDTuple(unittest.TestCase):
         for i, uid in enumerate(t):
             self.assertEqual(uid, ids[i])
             self.assertIsInstance(uid, MyID)
+    def test_single_id_as_string(self):
+        """Один ID в виде строки без запятых (граничный случай рекурсии)"""
+        uid = MyID()
+        t = MyIDTuple(str(uid))
+        self.assertEqual(len(t), 1)
+        self.assertEqual(t[0], uid)
+
+    def test_single_id_with_whitespace(self):
+        """Один ID с пробелами/табами вокруг (без запятых)"""
+        uid = MyID()
+        for space in [' ', '\t', '   ']:
+            t = MyIDTuple(f'{space}{uid}{space}')
+            self.assertEqual(len(t), 1)
+            self.assertEqual(t[0], uid)
+
+    def test_single_id_in_list_or_tuple(self):
+        """Один ID, обёрнутый в список или кортеж"""
+        uid = MyID()
+        t1 = MyIDTuple([str(uid)])
+        t2 = MyIDTuple((str(uid),))
+        t3 = MyIDTuple([uid])
+        t4 = MyIDTuple((uid,))
+        for t in (t1, t2, t3, t4):
+            self.assertEqual(len(t), 1)
+            self.assertEqual(t[0], uid)
 
 
 class TestIntegration(unittest.TestCase):
